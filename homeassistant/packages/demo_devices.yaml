@@ -1,0 +1,29 @@
+# kept minimal because devices will be created by MQTT Discovery from the simulator
+automation:
+  - alias: Notify when front door opens after 23:00
+    trigger:
+    - platform: state
+    entity_id: binary_sensor.door_front
+    to: 'on'
+    condition:
+      - condition: time
+        after: '23:00:00'
+    action:
+      - service: persistent_notification.create
+        data:
+        message: 'Front door opened after 23:00'
+
+
+# Example template sensor to show combined state
+sensor:
+  - platform: template
+    sensors:
+      livingroom_summary:
+        friendly_name: 'Livingroom Summary'
+        value_template: >-
+          {% set t = states('sensor.temp_livingroom') %}
+          {% set m = states('binary_sensor.motion_livingroom') %}
+          Temp: {{ t }}°C, Motion: {{ m }}
+
+
+# Note: Most of the demo entities are created dynamically via MQTT discovery messages from the device-simulator container.

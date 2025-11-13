@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    restart: unless-stopped
+    ports:
+    - '1883:1883'
+    - '9001:9001'
+    volumes:
+    - ./mosquitto/config:/mosquitto/config
+
+
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    restart: unless-stopped
+    volumes:
+    - ./homeassistant:/config
+    environment:
+    - TZ=Europe/Berlin
+    ports:
+    - '8123:8123'
+    depends_on:
+    - mosquitto
+
+
+  device-simulator:
+    build: ./device_simulator
+    restart: unless-stopped
+    environment:
+    - MQTT_BROKER=mosquitto
+    - MQTT_PORT=1883
+    - MQTT_USER=
+    - MQTT_PASS=
+    ports:
+    - '9000:9000'
+    depends_on:
+    - mosquitto
+
+
+  # Optional lightweight MQTT debugging UI (web-based)

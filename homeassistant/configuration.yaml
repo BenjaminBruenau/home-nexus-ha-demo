@@ -1,0 +1,31 @@
+# basic configuration to enable MQTT and packages
+homeassistant:
+name: Home Nexus Demo
+latitude: 52.52
+longitude: 13.405
+elevation: 34
+unit_system: metric
+currency: EUR
+external_url: http://localhost:8123
+
+
+# enable the built-in REST API (enabled by default)
+api:
+
+
+# mqtt integration (using local mosquitto)
+mqtt:
+broker: mosquitto
+port: 1883
+discovery: true
+discovery_prefix: homeassistant
+
+
+# load packages in /config/packages
+packages: !include_dir_named packages
+
+
+logger:
+default: info
+logs:
+homeassistant.components.mqtt: debug
