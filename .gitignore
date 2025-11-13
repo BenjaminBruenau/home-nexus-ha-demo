@@ -1,0 +1,22 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+
+# home assistant
+
+homeassistant/.storage
+homeassistant/deps
+homeassistant/blueprints
+homeassistant/tts
+homeassistant/.ha_run.lock
+homeassistant/.HA_VERSION
+homeassistant/*.log
+homeassistant/*.log.*
