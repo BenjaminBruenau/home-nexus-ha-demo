@@ -59,12 +59,12 @@ When you e.g. toggle the Coffee Switch this should also reflect in the device_si
 
 ## How to integrate with home-nexus
 
-### Option A — Use Home Assistant REST API (realistic)
+### Option A — Use Home Assistant REST API
 - Home Assistant exposes states at `GET /api/states/<entity_id>` and services at `POST /api/services/<domain>/<service>`.
 - Example: to read living room temperature:
-  - `GET http://localhost:8123/api/states/sensor.temp_livingroom`
+  - `GET http://localhost:8123/api/states/sensor.home_nexus_mock_devices_temperature_livingroom`
 - To call a service (e.g., turn on a switch):
-  - `POST http://localhost:8123/api/services/switch/turn_on` with JSON `{"entity_id":"switch.coffee"}`
+  - `POST http://localhost:8123/api/services/switch/turn_on` with JSON `{"entity_id":"switch.home_nexus_mock_devices_coffee_switch"}`
 - Authentication: on first HA launch you will create a user and can generate a Long-Lived Access Token under your profile (use that in `Authorization: Bearer <token>` header).
 
 ### Option B — Use MQTT topics directly (fast, lightweight)
