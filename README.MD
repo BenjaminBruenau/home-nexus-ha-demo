@@ -1,7 +1,7 @@
 # Home Nexus HA Demo
 
 This repository contains a fully ready-to-run local Home Assistant + MQTT + mock device simulator stack you can start with `docker compose up --build`. 
-It's designed to test my Home-Nexus G-Assist workflow plugin, so it can i.e. call the Home Assistant API or subscribe to MQTT topics.
+It's designed to test my [Home-Nexus G-Assist](https://github.com/BenjaminBruenau/Home-Nexus) workflow plugin, so it can i.e. call the Home Assistant API or subscribe to the Home-Assistant WebSocket.
 
 ```
 home-nexus-ha-demo/
